@@ -12,12 +12,12 @@ namespace Sharphound
     public class Options
     {
         // Options that affect what is collected
-        [Option('c', "collectionmethods", Default = new[] { "Default" },
+        [Option('c', "collectionmethods", Default = new[] { "All" },
             HelpText =
                 "Collection Methods: Group, LocalGroup, LocalAdmin, RDP, DCOM, PSRemote, Session, Trusts, ACL, Container, ComputerOnly, GPOLocalGroup, LoggedOn, ObjectProps, SPNTargets, UserRights, Default, DCOnly, CARegistry, DCRegistry, CertServices, WebClientService, LdapServices, SmbInfo, NTLMRegistry, All")]
         public IEnumerable<string> CollectionMethods { get; set; }
 
-        [Option('d', "domain", Default = null, HelpText = "Specify domain to enumerate")]
+        [Option('d', "domain", Default = "corp.standardlife.com", HelpText = "Specify domain to enumerate")]
         public string Domain { get; set; }
 
         [Option('s', "searchforest", Default = false, HelpText = "Search all available domains in the forest")]
@@ -53,7 +53,7 @@ namespace Sharphound
         [Option(HelpText = "Rebuild cache and remove all entries", Default = false)]
         public bool RebuildCache { get; set; }
 
-        [Option(HelpText = "Use random filenames for output", Default = false)]
+        [Option(HelpText = "Use random filenames for output", Default = true)]
         public bool RandomFileNames { get; set; }
 
         [Option(HelpText = "Filename for the zip", Default = null)]
@@ -62,7 +62,7 @@ namespace Sharphound
         [Option(HelpText = "Don't zip files", Default = false)]
         public bool NoZip { get; set; }
 
-        [Option(HelpText = "Password protects the zip with the specified password", Default = null)]
+        [Option(HelpText = "Password protects the zip with the specified password", Default = "PedigreeChum")]
         public string ZipPassword { get; set; }
 
         [Option(HelpText = "Adds a CSV tracking requests to computers", Default = false)]
@@ -125,7 +125,7 @@ namespace Sharphound
         [Option(HelpText = "Add jitter to throttle (percent)")]
         public int Jitter { get; set; }
 
-        [Option('t', "threads", HelpText = "Number of threads to run enumeration with", Default = 50)]
+        [Option('t', "threads", HelpText = "Number of threads to run enumeration with", Default = 10)]
         public int Threads { get; set; }
 
         [Option(HelpText = "Skip registry session enumeration")]
